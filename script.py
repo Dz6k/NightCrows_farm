@@ -57,6 +57,12 @@ def farm():
             sleep(0.2)
         # sleep loop for random some time
         sleep(choice(POSSIBILITIES))
+    # caso use a funcao stop threads
+    #  envia input Q no hexadecimal 0x51
+    SendMessage(hwnd, win32con.WM_KEYDOWN, 0x51 , 0)
+    sleep(0.01)
+    SendMessage(hwnd, win32con.WM_KEYUP, 0x51 , 0)
+    sleep(0.2) 
        
 def main(): 
     global execution

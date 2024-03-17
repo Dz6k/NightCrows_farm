@@ -12,9 +12,8 @@ import pyautogui  # this lib was used to and just to send a spam message if you 
 POSSIBILITIES = [3.5,
                  3.8,
                  4,
-                 4.5,
-                 4.8,
-                 5]
+                 4.5
+                 ]
 execution = 0
 
 # Take the handle based on windows title
@@ -31,17 +30,18 @@ def farm():
     # key for safe stop
     mkey = MouseKey()
     mkey.enable_failsafekill('ctrl+e')
-    # take handle of apliction
+    # take handle of aplication
     hwnd =  handle_of_windowtitle("NIGHT CROWS(1)")
     
     # send input Q (0x51) - start auto atack
-    SendMessage(hwnd, win32con.WM_KEYDOWN, 0x51 , None)
+    SendMessage(hwnd, win32con.WM_KEYDOWN, 0x51, 0)
     sleep(0.01)
     SendMessage(hwnd, win32con.WM_KEYUP, 0x51 , 0)
     sleep(0.2)
-
+    counter = 0
     # "infinite" loop for send inputs for a long long time....
     while True:
+        counter += 1
         #  YOU NEED TO MAKE AN IN-GAME SETUP
 
         # send input U (ux55)
@@ -55,6 +55,16 @@ def farm():
             SendMessage(hwnd,win32con.WM_KEYDOWN, 0x09 , 0)
             SendMessage(hwnd,win32con.WM_KEYUP, 0x09 , 0)
             sleep(0.2)
+
+        # At some point Char didn't focus on the mobs closest to him, for this problem, maybe this is the solution
+        if counter >= 4:
+
+            # send input U (ux55)
+            SendMessage(hwnd, win32con.WM_KEYDOWN, 0x55, 0)
+            sleep(0.01)
+            SendMessage(hwnd, win32con.WM_KEYUP, 0x55, 0)
+            counter = 0
+
         # sleep loop for random some time
         sleep(choice(POSSIBILITIES))
 
@@ -71,3 +81,4 @@ def main():
         start_farm = Thread(target=farm)
         # and this line starts it
         start_farm.start()
+

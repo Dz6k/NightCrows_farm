@@ -9,7 +9,10 @@ import pyautogui  # this lib was used to and just to send a spam message if you 
 
 
 # variables
-POSSIBILITIES = [3.5,
+POSSIBILITIES = [
+    2.8,
+    3,
+    3.5,
                  3.8,
                  4,
                  4.5
@@ -37,7 +40,7 @@ def farm():
     SendMessage(hwnd, win32con.WM_KEYDOWN, 0x51, 0)
     sleep(0.01)
     SendMessage(hwnd, win32con.WM_KEYUP, 0x51 , 0)
-    sleep(0.2)
+    # send input Q (0x51) - start auto atack
     counter = 0
     # "infinite" loop for send inputs for a long long time....
     while True:
